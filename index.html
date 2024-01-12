@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML task</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <nav>
+            <button class="btn btn-success">Button 1</button>
+            <button class="btn btn-info">Button 2</button>
+            <button class="btn btn-warning">Button 3</button>
+        </nav>
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.btn-info').click(function () {
+            let tr = $("tr");
+            let cnt = 0;
+            for (i = 0; i < tr.length; i++) {
+                let td = tr[i].cells;
+                for (j = 0; j < td.length; j++) {
+                    if (td[j].innerText == 0) {
+                        let temp_cnt = 0;
+
+                        if (j > 0 && td[j - 1].innerHTML == 1) temp_cnt++;
+                        if (j < 4 && td[j + 1].innerHTML == 1) temp_cnt++;
+                        if (i > 0 && tr[i - 1].cells[j].innerHTML == 1) temp_cnt++;
+                        if (i < 4 && tr[i + 1].cells[j].innerHTML == 1) temp_cnt++;
+
+                        if (temp_cnt > 2) cnt++;
+                    }
+                }
+            }
+            alert(cnt);
+        })
+
+        $('button').click(function () {
+            $('table').addClass('table-warning')
+        })
+    })
+</script>
+</body>
+</html>
